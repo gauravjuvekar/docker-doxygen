@@ -4,7 +4,6 @@ services:
 
 stages:
   - build
-  - deploy
 
 before_script:
   - docker login -u gitlab-ci-token -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
@@ -13,8 +12,4 @@ build:
   stage: build
   script:
     - docker build -t docker-doxygen:latest .
-
-deploy:
-  stage: deploy
-  script:
     - docker push "$CI_REGISTRY_IMAGE":latest
